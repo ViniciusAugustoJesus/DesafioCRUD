@@ -136,6 +136,123 @@ namespace DesafioCRUD
             }
         }
 
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    int idUser = Convert.ToInt32(txtIdAtt.Text);
+
+                    string query = $"UPDATE usuarios SET {GetColumnName()} = @valor WHERE id = {idUser}";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        if (!string.IsNullOrEmpty(GetColumnName()))
+                        {
+                            command.Parameters.AddWithValue("@valor", GetColumnValue());
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Dados atualizados com sucesso!");
+                            LimparTextBoxes();
+                            getUsers();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nenhum campo para atualizar foi especificado!");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao atualizar usuário: " + ex.Message);
+                }
+            }
+        }
+
+        private void getUsers()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    
+                    string query = "SELECT * FROM usuarios";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        
+                            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                            {
+                                DataTable dataTable = new DataTable();
+                                adapter.Fill(dataTable);
+
+                                // Limpe as colunas existentes no DataGridView
+                                gridUsers.Columns.Clear();
+
+                                // Vincule os dados ao DataGridView
+                                gridUsers.DataSource = dataTable;
+                            }
+                        
+
+                            command.ExecuteNonQuery();
+                            LimparTextBoxes();
+                        
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private string GetColumnName()
+        {
+            if (!string.IsNullOrEmpty(txtNome.Text))
+            {
+                return "nome";
+            }
+            else if (!string.IsNullOrEmpty(txtIdade.Text))
+            {
+                return "idade";
+            }
+            else if (!string.IsNullOrEmpty(txtCPF.Text))
+            {
+                return "CPF";
+            }
+            else if (!string.IsNullOrEmpty(txtSexo.Text))
+            {
+                return "sexo";
+            }
+
+            return string.Empty;
+        }
+
+        private object GetColumnValue()
+        {
+            if (!string.IsNullOrEmpty(txtNome.Text))
+            {
+                return txtNome.Text;
+            }
+            else if (!string.IsNullOrEmpty(txtIdade.Text))
+            {
+                return Convert.ToInt32(txtIdade.Text);
+            }
+            else if (!string.IsNullOrEmpty(txtCPF.Text))
+            {
+                return txtCPF.Text;
+            }
+            else if (!string.IsNullOrEmpty(txtSexo.Text))
+            {
+                return txtSexo.Text;
+            }
+
+            return null;
+        }
+
+
         private void LimparTextBoxes()
         {
             txtNome.Text = "";
@@ -144,6 +261,7 @@ namespace DesafioCRUD
             txtSexo.Text = "";
             txtExcluir.Text = "";
             txtConsulta.Text = "";
+            txtIdAtt.Text = "";
         }
     }
     }

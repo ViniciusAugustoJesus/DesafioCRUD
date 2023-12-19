@@ -45,14 +45,17 @@ namespace DesafioCRUD
             this.btnExcluir = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtExcluir = new System.Windows.Forms.TextBox();
+            this.btnAtualizar = new System.Windows.Forms.Button();
+            this.txtIdAtt = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(76, 249);
+            this.btnCadastrar.Location = new System.Drawing.Point(179, 196);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(82, 23);
+            this.btnCadastrar.Size = new System.Drawing.Size(83, 23);
             this.btnCadastrar.TabIndex = 0;
             this.btnCadastrar.Text = "CADASTRAR";
             this.btnCadastrar.UseVisualStyleBackColor = true;
@@ -183,11 +186,42 @@ namespace DesafioCRUD
             this.txtExcluir.Size = new System.Drawing.Size(79, 20);
             this.txtExcluir.TabIndex = 17;
             // 
+            // btnAtualizar
+            // 
+            this.btnAtualizar.Location = new System.Drawing.Point(15, 291);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnAtualizar.Size = new System.Drawing.Size(83, 23);
+            this.btnAtualizar.TabIndex = 18;
+            this.btnAtualizar.Text = "ATUALIZAR";
+            this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
+            // 
+            // txtIdAtt
+            // 
+            this.txtIdAtt.Location = new System.Drawing.Point(15, 265);
+            this.txtIdAtt.Name = "txtIdAtt";
+            this.txtIdAtt.Size = new System.Drawing.Size(143, 20);
+            this.txtIdAtt.TabIndex = 19;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 247);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(201, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "DIGITE O ID QUE DESEJA ATUALIZAR";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtIdAtt);
+            this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.txtExcluir);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnExcluir);
@@ -230,6 +264,9 @@ namespace DesafioCRUD
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtExcluir;
+        private System.Windows.Forms.Button btnAtualizar;
+        private System.Windows.Forms.TextBox txtIdAtt;
+        private System.Windows.Forms.Label label7;
     }
 }
 
