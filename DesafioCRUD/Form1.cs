@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace DesafioCRUD
 {
@@ -64,7 +58,7 @@ namespace DesafioCRUD
 
         }
 
-        
+
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
@@ -83,31 +77,31 @@ namespace DesafioCRUD
                     {
                         query = $"select * from usuarios where nome like '%{txtConsulta.Text}%'";
                     }
-                    
 
 
-                        using (SqlCommand command = new SqlCommand(query, connection))
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                            {
-                                DataTable dataTable = new DataTable();
-                                adapter.Fill(dataTable);
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
 
-                                // Limpe as colunas existentes no DataGridView
-                                gridUsers.Columns.Clear();
+                            // Limpe as colunas existentes no DataGridView
+                            gridUsers.Columns.Clear();
 
-                                // Vincule os dados ao DataGridView
-                                gridUsers.DataSource = dataTable;
-                            }
+                            // Vincule os dados ao DataGridView
+                            gridUsers.DataSource = dataTable;
                         }
                     }
-                
+                }
+
                 catch (Exception ex)
                 {
 
                     MessageBox.Show("Erro ao mostrar dados: " + ex.Message);
                 }
-            } 
+            }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -177,28 +171,28 @@ namespace DesafioCRUD
                 try
                 {
                     connection.Open();
-                    
+
                     string query = "SELECT * FROM usuarios";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                            {
-                                DataTable dataTable = new DataTable();
-                                adapter.Fill(dataTable);
 
-                                // Limpe as colunas existentes no DataGridView
-                                gridUsers.Columns.Clear();
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
 
-                                // Vincule os dados ao DataGridView
-                                gridUsers.DataSource = dataTable;
-                            }
-                        
+                            // Limpe as colunas existentes no DataGridView
+                            gridUsers.Columns.Clear();
 
-                            command.ExecuteNonQuery();
-                            LimparTextBoxes();
-                        
+                            // Vincule os dados ao DataGridView
+                            gridUsers.DataSource = dataTable;
+                        }
+
+
+                        command.ExecuteNonQuery();
+                        LimparTextBoxes();
+
                     }
                 }
                 catch (Exception ex)
@@ -264,5 +258,5 @@ namespace DesafioCRUD
             txtIdAtt.Text = "";
         }
     }
-    }
+}
 
