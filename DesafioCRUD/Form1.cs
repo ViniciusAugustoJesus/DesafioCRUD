@@ -9,8 +9,6 @@ namespace DesafioCRUD
     {
         private readonly string connectionString = "Data Source=10.0.0.2,214;Initial Catalog=Integrator_DEV;User ID=Vjesus;Password=Zac25715;";
 
-
-
         public Form1()
         {
             InitializeComponent();
@@ -44,6 +42,7 @@ namespace DesafioCRUD
 
                         MessageBox.Show("Dados inseridos com sucesso!");
                         LimparTextBoxes();
+                        getUsers();
                     }
                 }
                 catch (Exception ex)
@@ -120,6 +119,7 @@ namespace DesafioCRUD
 
                         MessageBox.Show("Usuario excluido com sucesso!");
                         LimparTextBoxes();
+                        getUsers();
                     }
 
                 }

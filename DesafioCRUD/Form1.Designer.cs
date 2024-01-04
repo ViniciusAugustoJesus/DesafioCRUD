@@ -188,7 +188,7 @@ namespace DesafioCRUD
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(15, 291);
+            this.btnAtualizar.Location = new System.Drawing.Point(206, 265);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnAtualizar.Size = new System.Drawing.Size(83, 23);
